@@ -6,7 +6,7 @@
 # 在Windows上 , 请把本文件放在游戏中的 /locations/ 文件夹里.
 # 在安卓系统上 (4.4+),请把它放在 /storage/emulated/0/Android/data/com.dirgtrats.endlessatc/files/里.
 # 复制 , 编辑 , 使用和共享自定义机场文件的后果自负!
-# 汉化版本:1.2.754(2020.7.12 13：37)
+# 汉化版本:1.2.756(2020.7.12 16：17)
 
 # 本文件有很多注释 (以#开头),以用作指导. 删除注释下面[airport1]部分中的'code ='项目，以使机场出现在游戏中。
 
@@ -135,68 +135,68 @@ airlines =
 [airport2]
 ##############################################################
 
-name = Secondary Airport	; name of secondary airport
-code = SC			; two letter code, will be added to the runways and plane tags
+name = Secondary Airport	; 第二个机场的名称
+code = SC			; 两个字母的代码,将添加到跑道和飞机上
 
 runways =
 	rwy2,	06,	6.7,	-3.5,	60.0,	1.88,	0,	0,	100,	3,0,3,0,	WL,	8.0
-## identifier, name, position, true_heading, <length>, <displaced>, <displaced2>, <elevation>, <glideslope>, <localizer>, <glideslope2>, <localizer2>, <beaconname, distance>, <beaconname2, distance2>
-# identifier must be unique to all other runways defined in this file
+## 标识符, 名称, 位置, 角度, <长度>, <displaced>, <displaced2>, <海拔>, <下滑道>, <航向信标>, <下滑道2>, <航向信标2>, <信标名, 距离>, <信标名2, 距离2>
+# 标识符必须是所有跑道中唯一的
 
-traffic = 5			; average time between airplanes per active runway, in minutes (but this decreases at higher skill values)
-inboundbeacon = bco		; beacon name, for arrivals (choose one from the beacon list above)
+traffic = 5			; 每个活动跑道在飞机之间的平均时间(以分钟为单位)(但在较高的技能值时会减少)(此处翻译存疑)
+inboundbeacon = bco		; 信标名称,用于落地飞机(在上面的信标列表中选择一个)
 entrypoints =
 	300
 	330
-# headings only
+## 仅航向
 
 airlines =
 	jet,		2,	b735,	jetliner
 	n-12345,	1,	c271
 
-climbaltitude = 3000	; maximum initial climb altitude in feet for departures
+climbaltitude = 3000	; 出发时最大初始爬升高度(英尺)
 
 sids =
 	north
 	south
 	west,	-25,	0,	westbound
 	bco
-## name, position, <pronunciation>
-# you may also give just the name of a beacon from the beacon list, or the name of a sid from the airport1 sid list
+## 名字, 坐标, <发音>
+# 您也可以只给出信标列表中的信标名称,或者来自airport1 SID列表中的SID名称
 
-# You can add more airports sections if needed ([airport3], etc).
+# 你可以添加更多的机场(例如[airport3]等等)但是格式必须和[airport2]保持一致
 
 ##############################################################
 [area1]
 ##############################################################
-shape = circle		; circle or polygon
-altitude = 3000		; minimum allowed altitude in feet
-name = SC		; <name, if omited then only planes inbound the main airport may enter this area>
-radius = 6		; radius of circle in NM
-position = 7, -3.6	; position of circle center
-labelpos = 6, 0		; <position of label>
-draw = 0, 5.9		; <start and end angle of visible arc, in radians (orientated eastwards), omit for a full circle>
+shape = circle		; 圆形或者多边形(填circle或者polygon)
+altitude = 3000		; 最小允许高度(英尺)
+name = SC		; <名称,如果省略,则只有进入主要机场(airport1)的飞机才可以进入该区域>
+radius = 6		; 圆形的半径(单位是海里)
+position = 7, -3.6	; 圆形区域的中心坐标
+labelpos = 6, 0		; <标签位置>
+draw = 0, 5.9		; <可见弧的起始角和结束角,以弧度为单位（向东）,如果填写了此项,则本区域将不是一个完整的圆>
 
 
 ##############################################################
 [area2]
 ##############################################################
-shape = polygon		; circle or polygon
-altitude = 3500		; minimum allowed altitude in feet
-#name = X		; <name, if omited then planes inbound the main airport may enter this area>
-draw = 1		; <number of invisible lines at the end of the polygon, omit for a full polygon>
-labelpos = -3.1, 10.9	; <position of label>
+shape = polygon		; 圆形或者多边形(填circle或者polygon)
+altitude = 3500		; 最小允许高度(英尺)
+#name = X		; <名称,如果省略,则只有进入主要机场(airport1)的飞机才可以进入该区域,如果不省略,请将本行开头的'#'删去>
+draw = 1		; <多边形末端的不可见线数，对于完整多边形忽略>(此处翻译存疑)
+labelpos = -3.1, 10.9	; <标签的地址>
 points =
 	-8.1,	13.3
 	0,	13
 	-1,	-4
 	-7.6,	-4
 	-9.0,	10
-## positions
-# the last point will be automatically connected to the first point
-# note: the polygon must be convex, for example a rectangle, for it to work correctly
-# you may need to split up non-convex shapes into simpler convex polygons with some invisible lines
-# each polygon must have its own [area] section
+## 位置
+# 最后一个点将自动连接到第一个点
+# 注意：多边形必须是凸的,例如矩形,才能正常工作(不能有点是向内的)
+# 您可能需要将非凸形状拆分为带有一些不可见线的更简单的凸多边形
+# 每个多边形必须有自己的[area]部分,格式参考[area2]
 
 
 ##############################################################
