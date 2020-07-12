@@ -56,7 +56,7 @@ beacons =
 	vor,	0,	-3,	0,	main v-o-r
 	bco,	18.6,	6.8,	090,	beacon two
 	trd,	N50.0, E2.1,	-090,	the third one
-## 名字, 坐标, <holdingheading>, <pronunciation> (后两个不知道怎么汉化)
+## 名字, 坐标, <holdingheading>, <发音> (后两个不知道怎么汉化)
 # 第一个信标将成为飞机进入机场时前往的默认航点
 # 当HoldingHeading为0或者省略时,飞机将会在到达航点后原地盘旋
 # 当HoldingHeading有数值, 飞机到达航点后将会向那个航向 (或磁航向) 飞 (此处汉化存疑)
