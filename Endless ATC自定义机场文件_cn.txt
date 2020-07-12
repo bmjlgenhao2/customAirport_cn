@@ -6,7 +6,7 @@
 # 在Windows上 , 请把本文件放在游戏中的 /locations/ 文件夹里.
 # 在安卓系统上 (4.4+),请把它放在 /storage/emulated/0/Android/data/com.dirgtrats.endlessatc/files/里.
 # 复制 , 编辑 , 使用和共享自定义机场文件的后果自负!
-# 汉化版本:1.2.903(2020.7.12 19:29)
+# 汉化版本:1.3.000.E000(2020.7.12 20:43)
 
 # 本文件有很多注释 (以#开头),以用作指导. 删除注释下面[airport1]部分中的'code ='项目，以使机场出现在游戏中。
 
@@ -143,7 +143,7 @@ runways =
 ## 标识符, 名称, 位置, 角度, <长度>, <displaced>, <displaced2>, <海拔>, <下滑道>, <航向信标>, <下滑道2>, <航向信标2>, <信标名, 距离>, <信标名2, 距离2>
 # 标识符必须是所有跑道中唯一的
 
-traffic = 5			; 每个活动跑道在飞机之间的平均时间(以分钟为单位)(但在较高的技能值时会减少)(此处翻译存疑)
+traffic = 5			; 每个活动跑道在飞机之间的平均时间(以分钟为单位)(但在较高的流量时会减少)(此处翻译存疑)
 inboundbeacon = bco		; 信标名称,用于落地飞机(在上面的信标列表中选择一个)
 entrypoints =
 	300
@@ -226,8 +226,8 @@ config2 =
 [transition1]
 ##############################################################
 
-runway = rwy1,	rev					; runway identifier, <reversed use>
-beacon = lima,	1,	18,	0,	lima		; selectable beacon to enable NAV mode; define a beacon, or choose a name from beacon list above
+runway = rwy1,	rev					; 跑道标识符, <是否允许反向使用(是的话填rev,否的话不填)>
+beacon = lima,	1,	18,	0,	lima		; (可选)信标启用导航模式;定义信标,或从上面的信标列表中选择一个名称
 route1 = 
 	100
 	-3,	22,	5500,	210
@@ -235,9 +235,9 @@ route1 =
 	1,	18,	4000
 	-3,	18, 	0,	180
 	10.5,	3000,	200
-# first item of the route is the bearing from the plane towards the beacon; if there are multiple routes defined, the closest bearing defines which route is selected.
-# next lines are optional waypoints: ## location, <maximum altitude>, <maximum speed>
-# last line is the interception point on the ILS: ## distance (NM) from the threshold, <maximum altitude>, <maximum speed>
+# 路线的第一项是从平面到信标的方位;如果定义了多条路线,则最近的方位定义了选择哪条路线
+# 下一行是可选的航路点: ## 位置, <最大高度>, <最大速度>
+# 最后一行是ILS截获点: ## 与跑道入口的距离(海里), <最大高度>, <最大速度>
 
 route2 = 
 	240
@@ -252,7 +252,7 @@ route3 =
 	-3,	18, 	0,	180
 	10.5,	3000,	200
 
-# multiple [transition] sections can be used for the same runway
+# 同一条跑道可以使用多个[transition](过渡)段
 
 
 ##############################################################
@@ -262,18 +262,18 @@ types =
 	f200, 5, 140, 230, 2.9, 3.2, 1400, 1600, 115, 125, 1.1, 1.2, big jet
 	c271, 6, 90, 120, 2.9, 3.2, 1400, 1600, 90, 105, 1.1, 1.2, singleprop
 ## type, category, minspeed, maxspeed, minturnrate, maxturnrate, mindescendrate, maxdescendrate, minfinalapproachspeed, maxfinalapproachspeed, minaccelrate, maxaccelrate, <manufacturer>
-# custom plane types, useful when specified custom types in the airline lists above, or to override default type properties
-# category is the weight category: 1 to 6, meaning superheavy=1, upperheavy, lowerheavy, uppermedium, lowermedium, light=6
-# turnrate is in degrees per second
-# descendrate is in feet per minute
-# accelrate is in knots per second
-# manufacturer name is optional, only used for private callsign pronunciation in usa mode
+# 定义飞机类型,当在上面的航空公司列表中指定自定义类型时非常有用,或者替代默认类型属性
+# 类型代表了飞机的重量: 1 到 6, 意思是:super=1, heavy, lowerheavy(个人理解类似757那种), uppermedium(个人理解类似737,320), lowermedium(个人理解crj,erj), light(个人理解172之类的)=6
+# turnrate代表飞机的转弯角度(单位为度,时间为秒)
+# descendrate代表下降率(以英尺/分钟为单位)
+# accelrate代表加速度(以节/秒为单位)
+# 制造商名称是可选的,仅在前面开启美式发音(usa)下用于私人呼号发音
 
 
 ##############################################################
 [scenario]
 ##############################################################
-finish = 2		; amount of planes to land to finish the scenario
+finish = 2		; 完成本机场所需落地的飞机数量
 
 events = 
 	0,	config,	1
@@ -298,13 +298,13 @@ events =
 	5,	arr,	210,	vor,	a333,	15000,	6000,	300,	0,	0,	1,	air
 	10,	arr,	090,	0,	0,	0,	0,	0,	0,	0,	0,	0,	sc
 	10,	dep,	rwy2,	north
-## elapsed time after previous event in seconds, eventtype, properties
-# available eventtypes: arr, dep, score, elapse, wind, cloud, config, text
-## arr: entrypoint, <beacon>, <planetype>, <altitude>, <targetaltitude>, <speed>, <delaytimer>, <fuel>, <emergency>, <callsign>, <destination>	; arrival (fuel counts up; lowfuel from 5000+, emergency=1 for medical, 2 for engine, destination is the two letter code of a secondary airport)
-## dep: runwayidentifier, sid, <planetype>, <emergency>, <callsign>								; departure
-## score: score			; set higher score/skill to open more runways, or lower to close runways
-## elapse: seconds		; elapse simulation time between events (only use this to build traffic before the start, so at time 0)
-## wind: heading, speed		; set wind (preferably in small steps when changing the wind)
-## cloud: position		; add cloud with radius of 1 NM (preferably just outside the airspace boundary, to avoid incidents, unless time is 0)
+## 上一事件后经过的时间(秒),事件类型,属性
+# 可用事件类型：arr,dep,score,elapse,wind,cloud,config,text
+## arr: 入口点,<前往的行点>, <飞机类型>, <高度>, <目标高度>, <速度>, <延误时间>, <油量>, <紧急情况>, <呼号>, <目的地>	; 进场 (燃油计数增加; 油量5000+会报出燃油不足, 紧急情况填1表示医疗紧急情况, 2表示引擎损坏, 目的地填除主机场外的其他机场的二字码)
+## dep: 跑道标识符, SID, <飞机类型>, <紧急情况>, <呼号>								; 飞机起飞
+## score: 分数			; 设置较高的分数来打开更多跑道,更低的分数来关闭部分跑道
+## elapse: (时间:秒)		; 事件之间经过的模拟时间(仅用于在开始之前构建流量,因此在时间0时)
+## wind: 角度, 速度		; 设置风(改变风向时最好小幅度更改航向)
+## cloud: 坐标		; 添加半径为1海里的云,最好添加在空域外,以避免事件的发生,除非时间为0
 ## config: entry		; change to different runway config, as specified in the rwy configurations section
-## text: message		; display yellow text at the top of screen
+## text: 消息		; 在屏幕顶部显示黄色文本
