@@ -6,7 +6,7 @@
 # 在Windows上 , 请把本文件放在游戏中的 /locations/ 文件夹里.
 # 在安卓系统上 (4.4+),请把它放在 /storage/emulated/0/Android/data/com.dirgtrats.endlessatc/files/里.
 # 复制 , 编辑 , 使用和共享自定义机场文件的后果自负!
-# 汉化版本:1.2.703(2020.7.12 09:35)
+# 汉化版本:1.2.754(2020.7.12 13：37)
 
 # 本文件有很多注释 (以#开头),以用作指导. 删除注释下面[airport1]部分中的'code ='项目，以使机场出现在游戏中。
 
@@ -100,35 +100,36 @@ runways =
 # 信标是航向信标上距离一定距离(以海里为单位)的点
 # 当跑道反向使用时 ， 第二个信标是航向信标上的一个点(反向的)
 
-climbaltitude = 5000 		; maximum initial climb altitude in feet for departures
+climbaltitude = 5000 		; 起飞时最大爬升高度(英尺)
 
 sids = 
 	north,	0,	25,	northbound
 	south,	0,	-25,	southbound
 	bco
-## name, position, <pronunciation>
-# you may also give just the name of a beacon from the beacon list
+## 名字, 地点, <声音>
+# SID的信标列表
+# 您也可以只从信标列表中给出一个信标的名称
 
 entrypoints = 
 	090
 	270,	bco
-## true_heading, <beacon>
-# this is where new arrivals enter at the boundary (approximately), e.g. 090 means planes will enter from the east, heading 270 (westbound)
-# inbound beacon is optional; choose a beacon name from the beacon list above; otherwise the first beacon from that list is chosen automatically
+## 航向, <信标>
+# 这是新抵达的飞机从边界进入的地方(大约) ,例如090表示飞机将从东方进入 ,航向270(向西)
+# 进场信标是可选的，从上面的信标列表中选择一个信标名称 ，否则将自动选择该列表中的第一个信标
 
 airlines =
 	air,	3,	a333/e175,	airliner,	w
 	air,	2,	dh8d,		airliner,	e
 	ph-abc,	1,	c271,		0,		nwe
 	n-123ab,1,	f200
-## name, amount, planetype, pronunciation, <direction>
-# name is the 3 letter airline code, or a private regristration (with a land code, dash(-), and then the format)
-# amount determines the relative likelihood of appearance (e.g. 0=never, 1=occasionally, 10=frequently, etc)
-# planetype determines plane characteristics, put a dash (/) between multiple types for random type selection
-# pronuniation is the callsign, used for airlines
-# direction lets the plane arrive/depart in (roughly) a preferred direction:
-# give the direction as a string containing one or more of the letters nwse, for north west south east,
-# but make sure there are actually entrypoints defined at those directions (approximately); w needs an entrypoint near 270
+## 名字, 数量, 飞机类型, 发音, <方向>
+# 名称是3个字母的航空公司代码 ,或自己重新分配(带有航班号码,破折号(-),就是这个格式)
+# 数量决定了出现的相对可能性(例如0=从不 ,1=偶尔 ,10=频繁 ,等等)
+# 飞机类型决定了飞机的特征 ,在多个类型之间加一个破折号（/) ,以便随机选择类型
+# 发音是指航班的呼号,用于航空公司
+# 方向是指飞机到达/离开(大致)一个首选方向;
+# 以包含一个或多个字母nwse的字符串形式给出方向 ,表示西北-东南,
+# 但要确保在这些方向(大约)定义了跑道头的方向；w需要接近270的入口点
 
 ##############################################################
 [airport2]
