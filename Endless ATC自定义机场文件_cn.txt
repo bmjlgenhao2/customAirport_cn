@@ -1,0 +1,313 @@
+# 自定义机场文件 (实验性功能!)
+# 汉化者:CCA9999 在本文件说明中添加了一部分自己的理解，如果有能力的话可以结合原版一起看，如果翻译有问题欢迎反馈到:qq3472088314@sina.cn
+# 鸣谢列表:Berlin N ， MU2132
+# 在编辑这个文件之前 , 请保存一份副本 , 并作为参考
+# 在Windows上 , 请把本文件放在游戏中的 /locations/ 文件夹里.
+# 在安卓系统上 (4.4+),请把它放在 /storage/emulated/0/Android/data/com.dirgtrats.endlessatc/files/里.
+# 复制 , 编辑 , 使用和共享自定义机场文件的后果自负!
+# 汉化版本:1.2.703(2020.7.12 09:35)
+# 译者的话:
+# 请尽量使用原版模板来创建自定义机场，使用中文模板创建机场所造成的所有后果自负！
+
+# 本文件有很多注释 (以#开头),以用作指导. 删除注释下面[airport1]部分中的'code ='项目，以使机场出现在游戏中。
+
+# 这个文件有许多段 [sections] (但大部分不是必须的), 他们的名字是:
+# [airspace]: 空域配置文件
+# [airport1]: 主要机场
+# [airport2]: 可选的第二个机场
+# [area1]: 可选的限制区域
+# [configurations]: 可选的跑道使用配置
+# [transition1]: 可选的跑道转换路线(此处汉化存疑)
+# [planetypes]: 可选的自定义飞机
+# [scenario]: 可选的非随机管制(此处汉化存疑)
+
+# 每一个项目都可能有一个或多个参数. 它的格式/顺序会在下一行中的 '##' 后说明.
+# 参数使用英文逗号分割. 多行的参数 (列表) 必须在每行开头和每一列中间添加tab(制表符)因此配置文件必须在电脑上进行编辑.
+# 此文件在'<>'中的选项是可选的(不包括'<>'本身).
+# 如果游戏没有正常加载参数,或者您不想设置此参数,那么'#'可以将属性归零,游戏会自动使用默认值.
+# 位置必须以x , y坐标表示(以海里为单位)，0,0为屏幕中心, 20.1 , 12.82位于左上角，
+# 或在纬度，经度坐标中 , 必须始终以N / W / S / E前缀开头，例如N40.7128，W74.0060或S049.43.45.000，E002.09.51.000 (DMS表示法).
+# 当磁场变化被定义时 , 横向/纵向坐标(和真实航向)会自动旋转 ; 这是为了使雷达显示与磁北对齐，因为航向360在雷达上是一条垂直的线.
+# x, y坐标是屏幕坐标,不跟随磁场变化旋转.
+# 不管怎样 , 所有位置都由两个值组成 , 用逗号分隔 . 你想使用x，y还是经纬度坐标，这取决于你自己.
+# 对于真实世界的数据 , 在互联网上搜索实际的经纬度坐标可能更容易. 而对于屏幕上的文本标签或自行创造的机场,X,Y坐标可能会使创建更简单.
+# 在游戏中按左Ctrl键可显示鼠标的当前坐标 . 这些值也会复制到Windows剪贴板中(根据译者在2020.7.11翻译时测试发现本功能似乎暂不可用).
+# 译者友情提示:
+# 1.原本参数中值为true/false的，自己修改时改为true即为打开,false即为关闭
+# 2.参数如果是小数的话,必须修改后还是小数,为了保证关卡的稳定性,最好小数点后的位数也一样.如果例子的值为6.8，你想改为7的话必须填7.0
+
+
+##############################################################
+[airspace]
+##############################################################
+
+radius = 30			; 空域半径(海里)
+zoom = 7.0 			; 默认缩放级别,增大以放大
+elevation = 13 			; 地面高度
+floor = 1500 			; 最低可选择高度
+descendaltitude = 7000 		; 出现在雷达中的最低初始高度
+ceiling = 9000 			; 最大可选择高度
+above = 12000 			; SID最大高度 (above ceiling)(这里不知道怎么翻译)
+transition = 18001		; 过渡最低高度(过渡:这里个人理解是经过机场而不落地/起飞)(单位为英尺,显示为FL)
+speedrestriction = 15, 220 	; 速度限制(半径以海里为单位，速度以节为单位)
+usa = true			; 美式呼号发音或跑道名称true为打开)
+metric = false			; 以米而不是英尺显示高度(true为打开)
+center = N50.1234, E2.0060	; 雷达中心的纬度/经度位置(在此文件中的其他位置使用纬度/经度坐标时需要)
+magneticvar = 2.0		; 磁方差; east=positive (用于旋转纬度/经度坐标(如果在下面定义))
+#此处汉化存疑
+
+beacons =
+	vor,	0,	-3,	0,	main v-o-r
+	bco,	18.6,	6.8,	090,	beacon two
+	trd,	N50.0, E2.1,	-090,	the third one
+## 名字, 坐标, <holdingheading>, <pronunciation> (后两个不知道怎么汉化)
+# 第一个信标将成为飞机进入机场时前往的默认航点
+# 当HoldingHeading为0或者省略时,飞机将会在到达航点后原地盘旋
+# 当HoldingHeading有数值, 飞机到达航点后将会向那个航向 (或磁航向) 飞 (此处汉化存疑)
+# 当HoldingHeading为负时，飞机将向左转而不是向右转
+
+line1 = 
+	10, 10
+	10, 40
+	40, 40
+	40, 10
+	10, 10
+## 坐标
+# 可选的绿色海岸线点列表
+
+line2 = 
+	-15, 0
+	-22, 0
+	-22, -12.23
+	-15, -14
+	-15, 0
+
+
+##############################################################
+[airport1]
+##############################################################
+
+name = Example Airport		; 机场名
+#code = EXAM			; 四字码, 会显示在机场列表中 (必需)(正式创建时请将此行最前面的一个'#'去掉
+
+runways = 
+	rwy1,	36,	-4.3,	3.23,	360.0,	11400,	0,	0,	100,	3,	360.0,	3,	180.0,	YY,	8.0,	ZZ,	8.5
+## 标识, 名称, 坐标, 真实的角度, <长度>, <displaced>, <displaced2>, <海拔>, <下滑道>, <航向信标>, <下滑道2>, <航向信标2>, <信标名, 距离>, <信标名2, 距离2>
+# 其中标识符是用于定义跑道使用情况配置的唯一名称
+# 跑道号是一位或者两位数字，可以选择后缀L，R或C字符
+# position 是跑道起点的位置 (包括displaced的起点)
+# 长度是以英尺为单位
+# displaced 跑道长度为英尺 (用于降落), displaced2 是用于跑道的另一头
+# 海拔以英尺为单位 , 且必须与上述空域高度差在1000英尺以内
+# 下滑道是以度为单位的角度 , 默认值为3
+# 航向信标是着陆前ILS的真实航向 , 默认情况下 , 它与跑道的真实航向相同 , 但允许有小的偏移
+# 信标是航向信标上距离一定距离(以海里为单位)的点
+# 当跑道反向使用时 ， 第二个信标是航向信标上的一个点(反向的)
+
+climbaltitude = 5000 		; maximum initial climb altitude in feet for departures
+
+sids = 
+	north,	0,	25,	northbound
+	south,	0,	-25,	southbound
+	bco
+## name, position, <pronunciation>
+# you may also give just the name of a beacon from the beacon list
+
+entrypoints = 
+	090
+	270,	bco
+## true_heading, <beacon>
+# this is where new arrivals enter at the boundary (approximately), e.g. 090 means planes will enter from the east, heading 270 (westbound)
+# inbound beacon is optional; choose a beacon name from the beacon list above; otherwise the first beacon from that list is chosen automatically
+
+airlines =
+	air,	3,	a333/e175,	airliner,	w
+	air,	2,	dh8d,		airliner,	e
+	ph-abc,	1,	c271,		0,		nwe
+	n-123ab,1,	f200
+## name, amount, planetype, pronunciation, <direction>
+# name is the 3 letter airline code, or a private regristration (with a land code, dash(-), and then the format)
+# amount determines the relative likelihood of appearance (e.g. 0=never, 1=occasionally, 10=frequently, etc)
+# planetype determines plane characteristics, put a dash (/) between multiple types for random type selection
+# pronuniation is the callsign, used for airlines
+# direction lets the plane arrive/depart in (roughly) a preferred direction:
+# give the direction as a string containing one or more of the letters nwse, for north west south east,
+# but make sure there are actually entrypoints defined at those directions (approximately); w needs an entrypoint near 270
+
+##############################################################
+[airport2]
+##############################################################
+
+name = Secondary Airport	; name of secondary airport
+code = SC			; two letter code, will be added to the runways and plane tags
+
+runways =
+	rwy2,	06,	6.7,	-3.5,	60.0,	1.88,	0,	0,	100,	3,0,3,0,	WL,	8.0
+## identifier, name, position, true_heading, <length>, <displaced>, <displaced2>, <elevation>, <glideslope>, <localizer>, <glideslope2>, <localizer2>, <beaconname, distance>, <beaconname2, distance2>
+# identifier must be unique to all other runways defined in this file
+
+traffic = 5			; average time between airplanes per active runway, in minutes (but this decreases at higher skill values)
+inboundbeacon = bco		; beacon name, for arrivals (choose one from the beacon list above)
+entrypoints =
+	300
+	330
+# headings only
+
+airlines =
+	jet,		2,	b735,	jetliner
+	n-12345,	1,	c271
+
+climbaltitude = 3000	; maximum initial climb altitude in feet for departures
+
+sids =
+	north
+	south
+	west,	-25,	0,	westbound
+	bco
+## name, position, <pronunciation>
+# you may also give just the name of a beacon from the beacon list, or the name of a sid from the airport1 sid list
+
+# You can add more airports sections if needed ([airport3], etc).
+
+##############################################################
+[area1]
+##############################################################
+shape = circle		; circle or polygon
+altitude = 3000		; minimum allowed altitude in feet
+name = SC		; <name, if omited then only planes inbound the main airport may enter this area>
+radius = 6		; radius of circle in NM
+position = 7, -3.6	; position of circle center
+labelpos = 6, 0		; <position of label>
+draw = 0, 5.9		; <start and end angle of visible arc, in radians (orientated eastwards), omit for a full circle>
+
+
+##############################################################
+[area2]
+##############################################################
+shape = polygon		; circle or polygon
+altitude = 3500		; minimum allowed altitude in feet
+#name = X		; <name, if omited then planes inbound the main airport may enter this area>
+draw = 1		; <number of invisible lines at the end of the polygon, omit for a full polygon>
+labelpos = -3.1, 10.9	; <position of label>
+points =
+	-8.1,	13.3
+	0,	13
+	-1,	-4
+	-7.6,	-4
+	-9.0,	10
+## positions
+# the last point will be automatically connected to the first point
+# note: the polygon must be convex, for example a rectangle, for it to work correctly
+# you may need to split up non-convex shapes into simpler convex polygons with some invisible lines
+# each polygon must have its own [area] section
+
+
+##############################################################
+[configurations]
+##############################################################
+
+config1 =
+	0,	rwy1,	landstart
+	7,	rwy1,	startland,	020,	nosid
+	8,	rwy2,	startlandrev
+## score, identifier, use, <offsetheading>, <nosid>
+# score is the score (skill) at which the runway will be activated
+# identifier is a unique runway name specified earlier
+# use is a string (without spaces) that may contain these words: start, land, rev, int, track
+# where rev means reversed use (opposite direction), int means intersection departure (takeoffs begin 30% down the rwy), track means backtrack after landing
+# offsetheading means planes will fly a specific heading just after takeoff (especially useful for allowing parallel takeoffs with divergent headings)
+# nosid option means planes will depart on the given offsetheading, with SID mode disabled
+# when rwy configurations are omited, two configs are automatically created, one for each rwy direction, with all runways active
+
+config2 =
+	0,	rwy1,	landstartrev
+	7,	rwy1,	startlandrev,	200,	nosid
+	8,	rwy2,	startland
+
+
+##############################################################
+[transition1]
+##############################################################
+
+runway = rwy1,	rev					; runway identifier, <reversed use>
+beacon = lima,	1,	18,	0,	lima		; selectable beacon to enable NAV mode; define a beacon, or choose a name from beacon list above
+route1 = 
+	100
+	-3,	22,	5500,	210
+	1,	22
+	1,	18,	4000
+	-3,	18, 	0,	180
+	10.5,	3000,	200
+# first item of the route is the bearing from the plane towards the beacon; if there are multiple routes defined, the closest bearing defines which route is selected.
+# next lines are optional waypoints: ## location, <maximum altitude>, <maximum speed>
+# last line is the interception point on the ILS: ## distance (NM) from the threshold, <maximum altitude>, <maximum speed>
+
+route2 = 
+	240
+	1,	18,	4000
+	-3,	18, 	0,	180
+	10.5,	3000,	200
+
+route3 = 
+	020
+	1,	10
+	1,	18,	4000
+	-3,	18, 	0,	180
+	10.5,	3000,	200
+
+# multiple [transition] sections can be used for the same runway
+
+
+##############################################################
+[planetypes]
+##############################################################
+types = 
+	f200, 5, 140, 230, 2.9, 3.2, 1400, 1600, 115, 125, 1.1, 1.2, big jet
+	c271, 6, 90, 120, 2.9, 3.2, 1400, 1600, 90, 105, 1.1, 1.2, singleprop
+## type, category, minspeed, maxspeed, minturnrate, maxturnrate, mindescendrate, maxdescendrate, minfinalapproachspeed, maxfinalapproachspeed, minaccelrate, maxaccelrate, <manufacturer>
+# custom plane types, useful when specified custom types in the airline lists above, or to override default type properties
+# category is the weight category: 1 to 6, meaning superheavy=1, upperheavy, lowerheavy, uppermedium, lowermedium, light=6
+# turnrate is in degrees per second
+# descendrate is in feet per minute
+# accelrate is in knots per second
+# manufacturer name is optional, only used for private callsign pronunciation in usa mode
+
+
+##############################################################
+[scenario]
+##############################################################
+finish = 2		; amount of planes to land to finish the scenario
+
+events = 
+	0,	config,	1
+	0,	score,	6
+	0,	wind,	180,	10
+	0,	cloud,	-1,	25
+	0,	cloud,	-2,	24
+	0,	cloud,	-4,	24
+	0,	dep,	rwy1,	north,	f200
+	0,	elapse, 20
+	0,	arr,	230,	vor,	f200
+	0,	elapse, 100
+	5,	arr,	90,	bco,	f200
+	40,	dep,	rwy1,	north,	f200
+	70,	dep,	rwy1,	south,	a333
+	20,	score,	8
+	90,	dep,	rwy1,	north
+	0,	wind,	200,	8
+	0,	cloud,	19,	-26.5
+	50,	dep,	rwy1,	west,	f200
+	1,	text,	Hello!
+	5,	arr,	210,	vor,	a333,	15000,	6000,	300,	0,	0,	1,	air
+	10,	arr,	090,	0,	0,	0,	0,	0,	0,	0,	0,	0,	sc
+	10,	dep,	rwy2,	north
+## elapsed time after previous event in seconds, eventtype, properties
+# available eventtypes: arr, dep, score, elapse, wind, cloud, config, text
+## arr: entrypoint, <beacon>, <planetype>, <altitude>, <targetaltitude>, <speed>, <delaytimer>, <fuel>, <emergency>, <callsign>, <destination>	; arrival (fuel counts up; lowfuel from 5000+, emergency=1 for medical, 2 for engine, destination is the two letter code of a secondary airport)
+## dep: runwayidentifier, sid, <planetype>, <emergency>, <callsign>								; departure
+## score: score			; set higher score/skill to open more runways, or lower to close runways
+## elapse: seconds		; elapse simulation time between events (only use this to build traffic before the start, so at time 0)
+## wind: heading, speed		; set wind (preferably in small steps when changing the wind)
+## cloud: position		; add cloud with radius of 1 NM (preferably just outside the airspace boundary, to avoid incidents, unless time is 0)
+## config: entry		; change to different runway config, as specified in the rwy configurations section
+## text: message		; display yellow text at the top of screen
